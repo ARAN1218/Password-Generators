@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block main %}
+    <div class="generator_title">
+        <h2>Caesar Cipher</h2>
+        <p>入力した文章を<a href="https://ja.wikipedia.org/wiki/%E3%82%B7%E3%83%BC%E3%82%B6%E3%83%BC%E6%9A%97%E5%8F%B7" style="color: rgb(0, 0, 0);">シーザー暗号(カエサル暗号)</a>で暗号化/復号化します。</p>
+        <p>(復号化する際は、文字をシフトする方向を反対向きにし、文字数を暗号化と同じにしてください)</p>
+        <p>使用可能文字：半角数字、大小アルファベット、ひらがな、カタカナ</p>
+    </div>
+
+    <div class="questions">
+        <form action="/caesar" enctype="multipart/form-data" method="POST" id="caesar">
+            <p>文字をシフトする方向を入力してください。</p>
+            <p>ex.) 右シフト...A→Z、左シフト...Z→A</p>
+            <select name="shift_direction">
+                <option value="right">右</option>
+                <option value="left">左</option>
+            </select>
+            <br>
+            <p>シフトする文字数を決めてください。</p>
+            <p>ex.) 3文字右シフト...A→D、2文字左シフト...A→Y</p>
+            <input type="number" value="{{ shift_len }}" name="shift_len">
+            <br>
+            <p>暗号化する文章を入力してください。</p>
+            <input type="text" value="{{ sentence }}" name="sentence">
+
+            <br><br><br>
+            <button class="button" type="submit" button-size="large">password generate</button>
+        </form>
+    </div>
+
+    {% if copy_flag %}
+        <div class="answers">
+            <p>入力した情報</p>
+            <p>シフト方向：{{ shift_direction }}</p>
+            <p>シフト文字数：{{ shift_len }}</p>
+            <p>暗号化する文字列：{{ sentence }}</p>
+            <br>
+            <p>生成したパスワード</p>
+            <input id="copyTarget" type="text" value="{{ caesar }}" readonly>
+            <button id="copy">copy</button>
+        </div>
+    {% endif %}
+
+
+{% endblock %}

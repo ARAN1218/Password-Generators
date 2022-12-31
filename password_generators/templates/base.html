@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ja" prefix="og: http://ogp.me/ns#">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Password Generators" />
+    <meta property="og:description" content="個人情報から唯一のパスワードを生成します🐦" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://password-generators.deta.dev" />
+    <meta property="og:image" content="https://password-generators.deta.dev/static/media/cyber_security.png" />
+    <link rel=apple-touch-icon sizes="180x180" href="{{ url_for('static', filename='media/apple-touch-icon.png') }}">
+    <link rel=icon type=image/png href="{{ url_for('static', filename='media/favicon.png') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
+    <title>Password Generators</title>
+</head>
+<body>
+    <header>
+        <h1><a>Password Generators</a></h1>
+        <button type="button" class="menu-btn">
+            <i class="fa fa-bars" aria-hidden="true"></i>
+            <span class="MenuBtn-BarFrame">
+                <span class="MenuBtn-BarFrame-FirstBar"></span>
+                <span class="MenuBtn-BarFrame-SecondBar"></span>
+                <span class="MenuBtn-BarFrame-ThirdBar"></span>
+            </span>
+        </button>
+        <div class="menu">
+            <div class="menu__item"><a href="/">Original Generator</a></div>
+            <div class="menu__item"><a href="/caesar">Caesar Cipher</a></div>
+            <div class="menu__item"><a href="/vigenere">Vigenere Cipher</a></div>
+            <div class="menu__item"><a href="/radix">Radix Transformation</a></div>
+            <div class="menu__item"><a href="/">Coming soon...</a></div>
+        </div>
+    </header>
+    {% block main %}
+    {% endblock %}
+    <footer>created by Shunsuke Nara</footer>
+
+    <script>
+        // hamburger menu
+        document.querySelector('.menu-btn').addEventListener('click', function(){
+            document.querySelector('.menu').classList.toggle('is-active');
+            document.querySelector('.MenuBtn-BarFrame').classList.toggle('isClosed');
+        });
+    </script>
+    
+    {% if copy_flag %}
+        <script>
+            // copy function
+            const button = document.querySelector('#copy');
+            button.addEventListener('click', () => {
+                var password = document.getElementById("copyTarget");
+                copyTarget.select();
+                document.execCommand("Copy");
+                button.innerHTML = 'copied!'
+                setTimeout(() => button.innerHTML = 'copy', 1000)
+            });
+        </script>
+    {% endif %}
+</body>
+</html>

@@ -1,0 +1,1 @@
+{"id":"31545457-8c44-4d0a-a200-58ac9b731103","space":30462,"runtime":"python3.9","name":"password-generators","path":"2llcmj","project":"c083m8ov","account":"144798365827","region":"ap-southeast-1","deps":["whitenoise==6.2.0","gunicorn==20.1.0","flask==2.1.2"],"envs":null,"public":true,"log_level":"off","cron":""}

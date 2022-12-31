@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block main %}
+    <div class="generator_title">
+        <h2>Vigenere Cipher</h2>
+        <p>入力した文章を<a href="https://ja.m.wikipedia.org/wiki/ヴィジュネル暗号" style="color: rgb(0, 0, 0);">ヴィジュネル暗号</a>で暗号化/復号化します。</p>
+        <p>使用可能文字：半角数字、大小アルファベット、ひらがな、カタカナ</p>
+    </div>
+
+    <div class="questions">
+        <form action="/vigenere" enctype="multipart/form-data" method="POST" id="vigenere">
+            <p>暗号化/復号化を選択してください。</p>
+            <select name="is_ed">
+                <option value="0">暗号化</option>
+                <option value="1">復号化</option>
+            </select>
+            <br>
+            <p>暗号化/復号化に用いる鍵を小アルファベットの平文で入力してください。</p>
+            <input type="text" value="{{ key }}" name="key">
+            <br>
+            <p>暗号化する文章を入力してください。</p>
+            <input type="text" value="{{ sentence }}" name="sentence">
+
+            <br><br><br>
+            <button class="button" type="submit" button-size="large">password generate</button>
+        </form>
+    </div>
+
+    {% if copy_flag %}
+        <div class="answers">
+            <p>入力した情報</p>
+            <p>暗号化/復号化：{{ is_ed }}</p>
+            <p>鍵：{{ key }}</p>
+            <p>暗号化する文字列：{{ sentence }}</p>
+            <br>
+            <p>生成したパスワード</p>
+            <input id="copyTarget" type="text" value="{{ vigenere }}" readonly>
+            <button id="copy">copy</button>
+        </div>
+    {% endif %}
+
+
+{% endblock %}

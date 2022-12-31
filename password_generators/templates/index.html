@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block main %}
+    <div class="generator_title">
+        <h2>Original Generator</h2>
+        <p>記憶が容易かつ不変、あるいはその場で調達可能な情報を基に一意なパスワードを生成します。</p>
+    </div>
+
+    <div class="questions">
+        <form action="/index" enctype="multipart/form-data" method="POST">
+            <p>パスワードの文字数を入力してください。</p>
+            <input type="number" value="{{ password_len }}" name="password_len">
+            <br>
+            <p>使用するサービスの名称を入力してください。</p>
+            <input type="text" value="{{ service_name }}" name="service_name">
+            <br>
+            <p>あなたの生年月日を入力してください。</p>
+            <input type="date" value="{{ birthdate }}" name="birthdate" max="9999-12-31">
+            <p>あなたのフルネームのイニシャルを入力してください。</p>
+            <p>ex.) Nara Shunsuke → NS</p>
+            <input type="text" value="{{ initial }}" name="initial">
+    
+            <br><br><br>
+            <button class="button" type="submit" button-size="large">password generate</button>
+        </form>
+    </div>
+
+    {% if copy_flag %}
+        <div class="answers">
+            <p>入力した情報</p>
+            <p>pwの文字数：{{ password_len }}</p>
+            <p>サービス名：{{ service_name }}</p>
+            <p>生年月日：{{ birthdate }}</p>
+            <p>イニシャル：{{ initial }}</p>
+            <br>
+            <p>生成したパスワード</p>
+            <textarea id="copyTarget" rows="1" cols="20" readonly>{{ password }}</textarea>
+            <!-- <input id="copyTarget" type="text" value="{{ password }}" readonly> -->
+            <button id="copy">copy</button>
+            {{ password_list }}
+        </div>
+    {% endif %}
+
+{% endblock %}

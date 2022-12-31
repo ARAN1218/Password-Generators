@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+
+{% block main %}
+    <div class="generator_title">
+        <h2>Radix Transformation</h2>
+        <p>入力した数値の基数を変換します。(10進数→2進数等)</p>
+    </div>
+
+    <div class="questions">
+        <form action="/radix" enctype="multipart/form-data" method="POST" id="radix">
+            <p>基数変換対象の数値を入力してください。</p>
+            <input type="text" name="number">
+            <br>
+            <p>基数変換前の基数を入力してください。</p>
+            <select name="before_radix" id="radix">
+                <option value="2">2進数</option>
+                <option value="3">3進数</option>
+                <option value="4">4進数</option>
+                <option value="5">5進数</option>
+                <option value="6">6進数</option>
+                <option value="7">7進数</option>
+                <option value="8">8進数</option>
+                <option value="9">9進数</option>
+                <option value="10" selected>10進数</option>
+                <option value="11">11進数</option>
+                <option value="12">12進数</option>
+                <option value="13">13進数</option>
+                <option value="14">14進数</option>
+                <option value="15">15進数</option>
+                <option value="16">16進数</option>
+                <option value="17">17進数</option>
+                <option value="18">18進数</option>
+                <option value="19">19進数</option>
+                <option value="20">20進数</option>
+                <option value="21">21進数</option>
+                <option value="22">22進数</option>
+                <option value="23">23進数</option>
+                <option value="24">24進数</option>
+                <option value="25">25進数</option>
+                <option value="26">26進数</option>
+                <option value="27">27進数</option>
+                <option value="28">28進数</option>
+                <option value="29">29進数</option>
+                <option value="30">30進数</option>
+                <option value="31">31進数</option>
+                <option value="32">32進数</option>
+                <option value="33">33進数</option>
+                <option value="34">34進数</option>
+                <option value="35">35進数</option>
+                <option value="36">36進数</option>
+            </select>
+            <br>
+            <p>基数変換後の基数を入力してください。</p>
+            <select name="after_radix" id="radix">
+                <option value="2" selected>2進数</option>
+                <option value="3">3進数</option>
+                <option value="4">4進数</option>
+                <option value="5">5進数</option>
+                <option value="6">6進数</option>
+                <option value="7">7進数</option>
+                <option value="8">8進数</option>
+                <option value="9">9進数</option>
+                <option value="10">10進数</option>
+                <option value="11">11進数</option>
+                <option value="12">12進数</option>
+                <option value="13">13進数</option>
+                <option value="14">14進数</option>
+                <option value="15">15進数</option>
+                <option value="16">16進数</option>
+                <option value="17">17進数</option>
+                <option value="18">18進数</option>
+                <option value="19">19進数</option>
+                <option value="20">20進数</option>
+                <option value="21">21進数</option>
+                <option value="22">22進数</option>
+                <option value="23">23進数</option>
+                <option value="24">24進数</option>
+                <option value="25">25進数</option>
+                <option value="26">26進数</option>
+                <option value="27">27進数</option>
+                <option value="28">28進数</option>
+                <option value="29">29進数</option>
+                <option value="30">30進数</option>
+                <option value="31">31進数</option>
+                <option value="32">32進数</option>
+                <option value="33">33進数</option>
+                <option value="34">34進数</option>
+                <option value="35">35進数</option>
+                <option value="36">36進数</option>
+            </select>
+
+            <br><br><br>
+            <button class="button" type="submit" button-size="large">password generate</button>
+        </form>
+    </div>
+
+    {% if copy_flag %}
+        <div class="answers">
+            <p>入力した情報</p>
+            <p>変換前の数値：{{ number }}</p>
+            <p>変更前基数：{{ before_radix }}</p>
+            <p>変更後基数：{{ after_radix }}</p>
+            <br>
+            <p>生成したパスワード</p>
+            <input id="copyTarget" type="text" value="{{ radix }}" readonly>
+            <button id="copy">copy</button>
+        </div>
+    {% endif %}
+
+
+{% endblock %}
